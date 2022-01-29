@@ -11,11 +11,11 @@ const User = mongoose.model('User',{
     }
 })
 const me = new User({
-    name:'Emma',
-    age:25
+    name:'Eman',
+    age:24
 });
-me.save().then(()=>{
-    console.log(me)
+me.save().then((result)=>{
+    console.log(result)
 }).catch((error)=>{
     console.log(error)
 
