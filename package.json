@@ -1,0 +1,22 @@
+{
+  "name": "task-manger-api",
+  "version": "1.0.0",
+  "description": "task manager api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmanSaeed331/task-manager-api.git"
+  },
+  "author": "Eman-Saeed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmanSaeed331/task-manager-api/issues"
+  },
+  "homepage": "https://github.com/EmanSaeed331/task-manager-api#readme",
+  "dependencies": {
+    "mongoose": "^6.1.8"
+  }
+}
