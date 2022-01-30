@@ -16,19 +16,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manger-api',{
 
     })
  */
-const Task = mongoose.model('Task',{
-    description:{
-        type:String,
-        trim:true,
-        require:true,
 
-
-    },
-    completed:Boolean,
-    default:false,
-    
-})
-const task = new Task({
+/* const task = new Task({
     description:'Study Go lang',
     completed:true,
 
@@ -37,4 +26,4 @@ task.save().then((result)=>{
     console.log(result)
 }).catch((error)=>{
     console.log(error)
-})
+}) */
