@@ -20,7 +20,15 @@ app.post('/user',(req,res)=>{
 
 })
 app.post('/task',(req,res)=>{
-    const 
+    const task = new Task(req.body)
+    task.save().then((task)=>{
+        res.send(task)
+
+
+    }).catch((error)=>{
+        res.send(error)
+
+    })
 })
 
  app.listen(port,()=>{
