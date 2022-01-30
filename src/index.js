@@ -7,7 +7,7 @@ const User = require('./models/user')
 
  const port = process.env.PORT || 3000 
 app.use(express.json());
-app.post('/user',(req,res)=>{
+app.post('/users',(req,res)=>{
     const user = new User(req.body)
     user.save().then((result) => {
         console.log(result);
@@ -19,7 +19,7 @@ app.post('/user',(req,res)=>{
 
 
 })
-app.post('/task',(req,res)=>{
+app.post('/tasks',(req,res)=>{
     const task = new Task(req.body)
     task.save().then((task)=>{
         res.send(task)
@@ -29,6 +29,15 @@ app.post('/task',(req,res)=>{
         res.send(error)
 
     })
+})
+app.get('/users',(req,res)=>{
+    User.find({}).then((users)=>{
+        res.send(users)
+        
+    }).catch((error)=>{
+
+    })
+
 })
 
  app.listen(port,()=>{
