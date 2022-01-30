@@ -57,13 +57,20 @@ me.save().then((result)=>{
 
 const Task = mongoose.model('Task',{
     description:{
-        type:String
+        type:String,
+        trim:true,
+        require:true,
+
+
     },
-    completed:Boolean
+    completed:Boolean,
+    default:false,
+    
 })
 const task = new Task({
     description:'Study Go lang',
-    completed:true
+    completed:true,
+
 })
 task.save().then((result)=>{
     console.log(result)
