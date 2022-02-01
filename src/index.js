@@ -126,7 +126,20 @@ app.patch('/task/:id',async(req,res)=>{
         res.status(404).send(e)
     }
 })
+//Deleting 
+app.delete('/user/:id',async(req,res)=>{
+    try{
+        const user = await User.findByIdAndDelete(req.params.id)
+        if (!user){
+            return res.status(404).send()
+        }
+        res.send(user)
+    }
+    catch(e){
+        res.status(500).send()
+    }
 
+})
 
 
 
