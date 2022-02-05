@@ -7,8 +7,8 @@ const Task = require('../models/task')
 router.post('/tasks',async (req,res)=>{
     const task = new Task(req.body)
     try{
-    const task = task.save()
-        res.status(201).send(task)
+     await task.save()
+     res.status(201).send(task)
     }
     catch(e){
         res.status(500).send()
@@ -51,7 +51,11 @@ router.patch('/task/:id',async(req,res)=>{
         return res.status(400).send({ error: 'Invalid updates!' })
     }
     try{
-        const task = await Task.findByIdAndUpdate(req.params.id,req.body , {new:true ,runValidators:true})
+        const task = await Task.findById(req.params.id)
+        updates.forEach((update)=> task[update] = req.body[update])
+        await task.save()
+        //updating directly in DB
+        //const task = await Task.findByIdAndUpdate(req.params.id,req.body , {new:true ,runValidators:true})
         if(!task){
             return res.status(404).send()
         }
