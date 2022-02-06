@@ -15,21 +15,20 @@ router.post('/users', async (req,res)=>{
     catch (e){
         res.status(400).send(e)
     }
-
+})
+// get Authorized user --> user Profile 
+router.get('/users/me',auth,async(req,res)=>{
+   res.send(req.user)
 })
 //get all users
 router.get('/users',auth,async(req,res)=>{
     try{
     const users = await User.find({})
-        
         res.send(users)
     }
     catch(e){
         res.status(500).send()
     }
-        
-   
-
 })
 //get by id 
 router.get('/user/:id', async (req,res)=>{
