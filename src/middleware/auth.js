@@ -13,6 +13,7 @@ const auth = async (req,res,next) => {
         if (!user){
             throw new Error ()
         }
+        req.token = token 
         /* give to route handler access to the user that fetched from DB ,
            we already fetch them and there's no need for the root handlers to fetch them again . 
 

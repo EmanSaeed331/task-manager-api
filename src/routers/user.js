@@ -30,6 +30,19 @@ router.get('/users',auth,async(req,res)=>{
         res.status(500).send()
     }
 })
+// user logout 
+router.post('/users/logout', auth ,async (req,res)=>{
+    try{
+        req.user.tokens = req.user.tokens.filter((token) =>{
+            return token.token !== req.token 
+        })
+        await req.user.save()
+        res.send()
+    }
+    catch(e){
+        res.status(500).send()
+    }
+})
 //get by id 
 router.get('/user/:id', async (req,res)=>{
     const _id = req.params.id
