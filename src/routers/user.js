@@ -55,7 +55,7 @@ router.post('/users/logoutAll', auth , async (req,res)=>{
     }
 })
 //get by id 
-router.get('/user/:id', async (req,res)=>{
+/* router.get('/user/:id', async (req,res)=>{
     const _id = req.params.id
     try{
         const user =await User.findById(_id)
@@ -71,7 +71,7 @@ router.get('/user/:id', async (req,res)=>{
    
    
 
-})
+}) */
 //Updating 
 router.patch('/user/:id', async (req, res) => {
     const updates = Object.keys(req.body)
@@ -99,13 +99,15 @@ router.patch('/user/:id', async (req, res) => {
     }
 })
 //Deleting
-router.delete('/user/:id',async(req,res)=>{
+router.delete('/user/me',auth,async(req,res)=>{
     try{
-        const user = await User.findByIdAndDelete(req.params.id)
+   /*      const user = await User.findByIdAndDelete(req.user._id)
         if (!user){
             return res.status(404).send()
         }
-        res.send(user)
+        res.send(user) */
+        await req.user.remove()
+        res.send(req.user)
     }
     catch(e){
         res.status(500).send()
