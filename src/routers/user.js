@@ -73,7 +73,7 @@ router.post('/users/logoutAll', auth , async (req,res)=>{
 
 }) */
 //Updating 
-router.patch('/user/:id', async (req, res) => {
+router.patch('/user/me',auth , async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'email', 'password', 'age']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -83,17 +83,17 @@ router.patch('/user/:id', async (req, res) => {
     }
 
     try {
-        const user = await User.findById(req.params.id)
-        updates.forEach((update)=> user[update] = req.body[update])
-        await user.save()
+       // const user = await User.findById(req.params.id)
+        updates.forEach((update)=> req.user[update] = req.body[update])
+        await req.user.save()
     //This line changes directly in DB.  
     // const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
-    
-        if (!user) {
+    // we don't need to check if user is exists as he is actually logged in . 
+      /*   if (!req.user) {
             return res.status(404).send()
         }
-
-        res.send(user)
+      */
+    res.send(req.user)
     } catch (e) {
         res.status(400).send(e)
     }
