@@ -43,6 +43,17 @@ router.post('/users/logout', auth ,async (req,res)=>{
         res.status(500).send()
     }
 })
+// logout of all sessions 
+router.post('/users/logoutAll', auth , async (req,res)=>{
+    try{
+        req.user.tokens = []
+        await req.user.save()
+        res.send()
+    }
+    catch(e){
+        res.status(500).send()
+    }
+})
 //get by id 
 router.get('/user/:id', async (req,res)=>{
     const _id = req.params.id
