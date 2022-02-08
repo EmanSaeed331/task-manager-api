@@ -48,8 +48,10 @@ const userSchema = new mongoose.Schema({
             type:String, 
             required:true,
         }
-    }]
-})
+    }] },
+    {timestamps:true
+    },
+)
 // make a relation between task and user .
 // virtual is for mongoose to figure out how user and task are related . 
 // it is not stored in DB . 
