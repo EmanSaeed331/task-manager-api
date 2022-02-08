@@ -49,6 +49,15 @@ const userSchema = new mongoose.Schema({
         }
     }]
 })
+// make a relation between task and user .
+// virtual is for mongoose to figure out how user and task are related . 
+// it is not stored in DB . 
+userSchema.virtual('tasks', {
+    ref:'Task',
+    localField:'_id',
+    foreignField:'owner'
+
+})
 //methods are accessible for instance methods.
 userSchema.methods.generateAuthToken = async function(){
     const user = this 
