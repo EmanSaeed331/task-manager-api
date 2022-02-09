@@ -137,7 +137,7 @@ const upload = multer({
     },
     fileFilter(req,file,cb) {
         if(!file.originalname.match(/\.(jpg|jpeg)$/)){
-            return cb(new Error ('Please upload a word document'))
+            return cb(new Error ('Please upload a jpg | jpeg images'))
         }
         cb(undefined , true)
     }
@@ -145,7 +145,10 @@ const upload = multer({
 //Upload end point 
 router.post('/users/me/avatar',upload.single('avatar'),(req,res)=>{
     res.send()
-})
+},(error,req,res,next) =>{
+    res.status(400).send({error:error.message})
+}
+)
 
 
 
