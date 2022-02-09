@@ -2,6 +2,7 @@ const express = require('express')
 const router  = new express.Router()
 const User = require('../models/user')
 const auth = require('../middleware/auth')
+const multer = require('multer')
 
 // create a user 
 
@@ -115,7 +116,7 @@ router.delete('/user/me',auth,async(req,res)=>{
 
 })
 //login route 
-router.post('/users/login',async(req,res)=>{
+router.post('/users/login/avatar',async(req,res)=>{
     try{
         const user = await User.findByCredentials(req.body.email,req.body.password)
         const token = await user.generateAuthToken()
@@ -126,6 +127,15 @@ router.post('/users/login',async(req,res)=>{
         res.status(400).send()
     }
     
+})
+//Avatar upload 
+// set multer configuration 
+const upload = multer({
+    dest:'avatar'
+})
+//Upload end point 
+router.post('/users/me/avatar',upload.single('avatar'),(req,res)=>{
+    res.send()
 })
 
 
