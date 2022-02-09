@@ -131,7 +131,16 @@ router.post('/users/login/avatar',async(req,res)=>{
 //Avatar upload 
 // set multer configuration 
 const upload = multer({
-    dest:'avatar'
+    dest:'avatar',
+    limits:{
+        fileSize:1000000
+    },
+    fileFilter(req,file,cb) {
+        if(!file.originalname.match(/\.(jpg|jpeg)$/)){
+            return cb(new Error ('Please upload a word document'))
+        }
+        cb(undefined , true)
+    }
 })
 //Upload end point 
 router.post('/users/me/avatar',upload.single('avatar'),(req,res)=>{
