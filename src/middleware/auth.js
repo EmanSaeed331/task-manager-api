@@ -8,7 +8,7 @@ const auth = async (req,res,next) => {
         const token = req.header('Authorization').replace('Bearer ','')
         //check the token is verified 
     
-        const decoded = jwt.verify(token,'thisismynewcourse')
+        const decoded = jwt.verify(token,process.env.JWT_SECRET)
         const user = await User.findOne({_id:decoded._id , 'tokens.token':token})
         // validate user existence .
         if (!user){
