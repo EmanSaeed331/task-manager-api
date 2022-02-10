@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/EmanSaeed331/task-manager-api#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.6.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
