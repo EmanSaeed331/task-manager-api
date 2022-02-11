@@ -10,7 +10,6 @@ This is a full featured Task Manger API back-end built with Node.js and MongoDB.
 - To use this code you will require an account with [SendGrid](https://signup.sendgrid.com/).
 - nodejs v16.13.1
 - npm must be installed on your machine
-- In terminal type the following commands:
 ### INSTALLING  
 ```
 git clone https://github.com/EmanSaeed331/task-manager-api.git
